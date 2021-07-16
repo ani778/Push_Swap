@@ -5,45 +5,127 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhovhan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/18 16:37:54 by anhovhan          #+#    #+#             */
-/*   Updated: 2021/06/18 16:37:58 by anhovhan         ###   ########.fr       */
+/*   Created: 2021/07/15 11:37:37 by anhovhan          #+#    #+#             */
+/*   Updated: 2021/07/15 11:37:39 by anhovhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void print_stack(t_stack *stack)
+void print_stack(t_stack *a)
 {
-  t_stack *tmp;
+  int size;
 
-  tmp = stack;
-  while (tmp->next)
+  size = list_length(a);
+
+  printf("Size is : %d\n", size);
+  while (size > 0)
   {
-    printf("%d\n", tmp->val);
-    tmp = tmp->next;
+    // printf("d %5d c %5d\n", a->val, a->chunk);
+    printf("A value is %5d \n", a->val);
+    a = a->next;
+    size--;
   }
+  printf("\n\n");
 }
-void creat_stack(int *tab)
+
+t_stack *new_node(int data)
 {
-  t_stack *a;
-  t_stack *first;
-  int size = tmpSize(tab);
+  t_stack *new;
 
-  a = (t_stack *)malloc(sizeof(t_stack));
-  if (!a)
-    exit(1);
-  first = a;
-  int i = 0;
+  if (!(new = malloc(sizeof(t_stack))))
+    error_exit(-1);
+  new->val = data;
+  // new->chunk = 0;
+  new->next = NULL;
+  printf("Value : %d\n", new->val);
+  return (new);
+}
 
-  while (i < size)
+t_stack **new_stack(t_stack **ptr, int *arr, int size)
+{
+  while (size > 0)
   {
-    first->val = tab[i];
-    first->next = (t_stack *)malloc(sizeof(t_stack));
-    first = first->next;
+    push(ptr, arr[size - 1]);
+    size--;
+  }
+  (*ptr)->chunk = 3;
+  ft_lstlast(*ptr)->chunk = 1;
+  printf("ptr chunk is : %d\n", (*ptr)->chunk);
+  return (ptr);
+}
+t_stack *ft_lstlast(t_stack *lst)
+{
+  while (lst && lst->next)
+    lst = lst->next;
+
+  printf("Last index is: %d\n", lst->val);
+  return (lst);
+}
+
+void push(t_stack **lst, int data)
+{
+  t_stack *new;
+
+  new = new_node(data);
+  new->next = *lst;
+  *lst = new;
+}
+
+// void pop(t_stack **lst)
+// {
+//   t_stack *t;
+
+//   if (!(*lst))
+//     error_exit(0);
+//   if (!(*lst)->next)
+//     (*lst)->next = NULL;
+//   t = *lst;
+//   *lst = (*lst)->next;
+//   free(t);
+// }
+int list_length(t_stack *lst)
+{
+  int size;
+
+  size = 0;
+  while (lst)
+  {
+    lst = lst->next;
+    size++;
+  }
+  printf("Length :%d\n", size);
+  return (size);
+}
+int not_unique(int *arr, int size)
+{
+  int i;
+  int j;
+
+  i = 0;
+  while (i < size - 1)
+  {
+    j = i + 1;
+    while (j < size)
+    {
+      if (arr[i] == arr[j])
+        return (1);
+      j++;
+    }
     i++;
   }
-  first->next = NULL;
-
-  print_stack(a);
-  // ra(a);
+  return (0);
 }
+
+// int chunks_length(t_stack *a)
+// {
+//   int count;
+
+//   count = 0;
+//   while (a && a->chunk != 2)
+//   {
+//     count++;
+//     a = a->next;
+//   }
+//   return (count);
+// }

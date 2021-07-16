@@ -1,32 +1,41 @@
-NAME	= push_swap
+DIR_HEADERS = ./includes/
 
-CC 		= gcc
+DIR_SRCS	= ./
 
-SRCS	= push_swap.c error_handling.c fill_stacks.c \
-						operations.c quic_sort.c init.c
+SRC			= push_swap.c \
+			error_handling.c \
+			fill_stacks.c \
+		 	utils.c \
+			init.c \
 
-LIBFT	= Libft/
-# LIBA = Libft/libft.a
+SRCS		= $(addprefix $(DIR_SRCS), $(SRC))
 
-OBJS	= ${SRCS:%.c=%.o}
+OBJS		= $(SRCS:.c=.o)
 
-FLAGS = -Wall -Wextra -Werror
-# $(LIBFT):
-# 			@cd ./Libft/
-# 			@make
-# 			@cd ..
+NAME		= push_swap
 
-$(NAME):
-			@${CC} -o $(NAME) $(SRCS) Libft/libft.a
 
-all: 	$(NAME)
+
+GCC			= gcc
+
+RM			= rm -f
+
+CFLAGS		= -Wall -Werror -Wextra 
+
+%.o: %.c
+			$(GCC) $(CFLAGS) -I $(DIR_HEADERS) -c $< -o $@
+
+$(NAME):	$(OBJS)
+			$(GCC) $(CFLAGS) -I $(DIR_HEADERS)  $(OBJS) -o $(NAME)
+
+all:		$(NAME)
 
 clean:
-			@rm -rf $(NAME)
+			$(RM) $(OBJS)
 
-fclean:	clean
-			@rm -rf $(NAME)
+fclean:		clean
+			$(RM) $(NAME)
 
-re:	fclean all
+re:			fclean all
 
-.PHONY: all clean fclean re
+phony:		all clean fclean re

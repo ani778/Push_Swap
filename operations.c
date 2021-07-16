@@ -5,20 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhovhan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/19 16:49:49 by anhovhan          #+#    #+#             */
-/*   Updated: 2021/06/19 16:49:52 by anhovhan         ###   ########.fr       */
+/*   Created: 2021/07/15 11:38:31 by anhovhan          #+#    #+#             */
+/*   Updated: 2021/07/15 11:38:35 by anhovhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-// void ft_swap(int *a, int *b)
-// {
-//   int temp;
 
-//   temp = *a;
-//   *a = *b;
-//   *b = temp;
-// }
 int sab(t_stack **head)
 {
   t_stack *stack;
