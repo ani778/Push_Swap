@@ -5,13 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhovhan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/18 15:11:54 by anhovhan          #+#    #+#             */
-/*   Updated: 2021/06/18 15:11:56 by anhovhan         ###   ########.fr       */
+/*   Created: 2021/07/17 13:27:23 by anhovhan          #+#    #+#             */
+/*   Updated: 2021/07/17 13:27:25 by anhovhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+// #include "push_swap.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
+void swap(int *a, int *b)
+{
+  int t = *a;
+  *a = *b;
+  *b = t;
+}
 int partition(int arr[], int low, int high)
 {
   int pivot = arr[high];
@@ -21,10 +30,10 @@ int partition(int arr[], int low, int high)
     if (arr[j] <= pivot)
     {
       i++;
-      ft_swap(&arr[i], &arr[j]);
+      swap(&arr[i], &arr[j]);
     }
   }
-  ft_swap(&arr[i + 1], &arr[high]);
+  swap(&arr[i + 1], &arr[high]);
   return (i + 1);
 }
 
@@ -37,21 +46,25 @@ void quickSort(int arr[], int low, int high)
     quickSort(arr, pi + 1, high);
   }
 }
-
-void printArray(int arr[])
+void printArray(int arr[], int size)
 {
   int i;
-  for (i = 0; i < tmpSize(arr); i++)
+  for (i = 0; i < size; i++)
     printf("%d ", arr[i]);
-  printf(" \n");
+  printf("\n");
 }
 
-// int main()
-// {
-//   int arr[] = {2, 7, 8, 9, 4, 6, 5};
-//   int n = sizeof(arr) / sizeof(arr[0]);
-//   quickSort(arr, 0, n - 1);
-//   printf("The sorted array is : ");
-//   printArray(arr, n);
-//   return 0;
-// }
+int main()
+{
+  int data[] = {8, 7, 2, 1, 0, 9, 6};
+
+  int n = sizeof(data) / sizeof(data[0]);
+
+  printf("Unsorted Array\n");
+  printArray(data, n);
+
+  quickSort(data, 0, n - 1);
+
+  printf("Sorted array in ascending order: \n");
+  printArray(data, n);
+}

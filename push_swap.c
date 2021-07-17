@@ -47,11 +47,12 @@ int main(int argc, char **argv)
     result = ft_strjoin(result, argv[i]);
     i++;
   }
-  print_stack(*a);
-  // pop(*a);
+  // print_stack(*a);
   size = count_spaces(result) + 1;
   arr = get_ints(result, size);
   a = new_stack(a, arr, size);
+  print_stack(*a);
+  sorted(*a);
   // three_n(a);
   // sort_a(a, b, list_length(*a));
   // free(arr);

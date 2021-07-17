@@ -12,6 +12,14 @@
 
 #include "push_swap.h"
 
+void ft_swap(int *a, int *b)
+{
+  int temp;
+
+  temp = *a;
+  *a = *b;
+  *b = temp;
+}
 char *ft_strjoin(char const *s1, char const *s2)
 {
   int idx;

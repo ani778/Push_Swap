@@ -18,11 +18,10 @@ void print_stack(t_stack *a)
 
   size = list_length(a);
 
-  printf("Size is : %d\n", size);
   while (size > 0)
   {
     // printf("d %5d c %5d\n", a->val, a->chunk);
-    printf("A value is %5d \n", a->val);
+    printf("Value is %5d \n", a->val);
     a = a->next;
     size--;
   }
@@ -38,7 +37,7 @@ t_stack *new_node(int data)
   new->val = data;
   // new->chunk = 0;
   new->next = NULL;
-  printf("Value : %d\n", new->val);
+  // printf("Value : %d\n", new->val);
   return (new);
 }
 
@@ -72,18 +71,18 @@ void push(t_stack **lst, int data)
   *lst = new;
 }
 
-// void pop(t_stack **lst)
-// {
-//   t_stack *t;
+void pop(t_stack **lst)
+{
+  t_stack *t;
 
-//   if (!(*lst))
-//     error_exit(0);
-//   if (!(*lst)->next)
-//     (*lst)->next = NULL;
-//   t = *lst;
-//   *lst = (*lst)->next;
-//   free(t);
-// }
+  if (!(*lst))
+    error_exit(0);
+  if (!(*lst)->next)
+    (*lst)->next = NULL;
+  t = *lst;
+  *lst = (*lst)->next;
+  free(t);
+}
 int list_length(t_stack *lst)
 {
   int size;
@@ -94,7 +93,7 @@ int list_length(t_stack *lst)
     lst = lst->next;
     size++;
   }
-  printf("Length :%d\n", size);
+  // printf("Length :%d\n", size);
   return (size);
 }
 int not_unique(int *arr, int size)
@@ -117,15 +116,14 @@ int not_unique(int *arr, int size)
   return (0);
 }
 
-// int chunks_length(t_stack *a)
-// {
-//   int count;
+void free_stack(t_stack *a)
+{
+  t_stack *tmp;
 
-//   count = 0;
-//   while (a && a->chunk != 2)
-//   {
-//     count++;
-//     a = a->next;
-//   }
-//   return (count);
-// }
+  while (a)
+  {
+    tmp = a->next;
+    a = tmp;
+    free(tmp);
+  }
+}

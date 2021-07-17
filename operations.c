@@ -12,16 +12,22 @@
 
 #include "push_swap.h"
 
-int sab(t_stack **head)
+int sab(t_stack **head, char n)
 {
   t_stack *stack;
 
   stack = *head;
   if (stack && stack->next)
     ft_swap(&stack->val, &stack->next->val);
+  if (n == 'a')
+    write(1, "pa\n", 3);
+  else if (n == 'b')
+    write(1, "pb\b", 3);
+  // printf("First value: %d\n", stack->val);
+  // printf("Second value: %d\n", stack->next->val);
   return (0);
 }
-int rab(t_stack **head)
+int rab(t_stack **head, char n)
 {
   t_stack *first;
   t_stack *last;
@@ -38,9 +44,13 @@ int rab(t_stack **head)
   last->next = first;
   first->next = NULL;
   *head = stack;
+  if (n == 'a')
+    write(1, "ra\n", 3);
+  else if (n == 'b')
+    write(1, "rb\n", 3);
   return (0);
 }
-int rrab(t_stack **head)
+int rrab(t_stack **head, char n)
 {
   t_stack *last;
   t_stack *previous;
@@ -58,37 +68,42 @@ int rrab(t_stack **head)
   last->next = stack;
   previous->next = NULL;
   *head = last;
+  if (n == 'a')
+    write(1, "rra\n", 4);
+  else if (n == 'b')
+    write(1, "rrb\n", 4);
+  // printf("Head value is : %d\n", (*head)->val);
   return (0);
 }
 
-int pab(t_stack **head_to, t_stack **head_from)
+int pab(t_stack **a, t_stack **b, char n)
 {
-  t_stack *t;
-  t_stack *tmp;
-
-  tmp = *head_from;
-  t = (*head_to)->next;
-  *head_from = *head_to;
-  (*head_from)->next = tmp;
-  *head_to = t;
-
+  push(b, (*a)->val);
+  pop(a);
+  if (n == 'a')
+    write(1, "pa\n", 3);
+  else if (n == 'b')
+    write(1, "pb\b", 3);
   return (0);
 }
-int ss(t_stack **stack1, t_stack **stack2)
+int ss(t_stack **a, t_stack **b)
 {
-  sab(stack1);
-  sab(stack2);
+  sab(a, '0');
+  sab(b, '0');
+  write(1, "ss\n", 3);
   return (0);
 }
-int rr(t_stack **stack1, t_stack **stack2)
+int rr(t_stack **a, t_stack **b)
 {
-  rab(stack1);
-  rab(stack2);
+  rab(a, '0');
+  rab(b, '0');
+  write(1, "rr\n", 3);
   return (0);
 }
-int rrr(t_stack **stack1, t_stack **stack2)
+int rrr(t_stack **a, t_stack **b)
 {
-  rrab(stack1);
-  rrab(stack2);
+  rrab(a, '0');
+  rrab(b, '0');
+  write(1, "rrr\n", 4);
   return (0);
 }
