@@ -6,11 +6,13 @@ SRC			= push_swap.c \
 			error_handling.c \
 			fill_stacks.c \
 		 	utils.c \
-			init.c \
+			get_ints.c \
 			operations.c \
 			fill_array.c \
 			chunk.c \
-			# quic_sort.c \
+			three_n.c \
+			divide_a.c \
+			divide_b.c \
 
 SRCS		= $(addprefix $(DIR_SRCS), $(SRC))
 

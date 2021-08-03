@@ -23,6 +23,7 @@ int count_spaces(char *str)
       count++;
     str++;
   }
+  // printf("Count space %d\n", count);
   return (count);
 }
 
@@ -37,12 +38,14 @@ int *get_ints(char *argv, int size)
   char *join;
 
   size1 = size;
+  // printf("Size is %d\n", size);
   if (!only_num(argv))
     error_exit(1);
   if (!(ret = (int *)malloc(size)))
     error_exit(-1);
   ret1 = ret;
   str = argv;
+  // printf("str is %s\n", str);
   start = 0;
   while (*str && size > 0)
   {
@@ -54,12 +57,14 @@ int *get_ints(char *argv, int size)
     }
     join = ft_substr((char const *)argv, (unsigned int)start, len);
     *ret1 = ft_atoi(join);
-    //free(join);
+    // free(join);
     ret1++;
     size--;
     start += len + 1;
+    // printf("start is %d\n", start);
     str++;
   }
+  // printf("start is %d\n", start);
   if (not_unique(ret, size1))
     error_exit(1);
   return (ret);

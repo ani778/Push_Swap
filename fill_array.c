@@ -70,7 +70,7 @@ void ascending_sort(int *arr, int n)
         arr[j] = a;
       }
     }
-    printf("Sorted Array %d\n", arr[i]);
+    // printf("Sorted Array %d\n", arr[i]);
   }
 }
 void insertionSort(int *arr, int n)

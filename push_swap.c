@@ -14,22 +14,12 @@
 
 int main(int argc, char **argv)
 {
-  // // t_stack **a;
-  // // t_stack **b;
-  // t_stack *ptr1;
-  // // t_stack *ptr2;
-  // int *arr;
-  // // int size;
-  // // int i;
-  // // char *result;
-  // creat_stack(arr);
-  // print_stack(ptr1);
   t_stack **a;
-  int *arr = NULL;
   t_stack *ptr1;
   t_stack *ptr2;
   t_stack **b;
-  int size = 0;
+  int *arr;
+  int size;
   int i;
   char *result;
 
@@ -51,11 +41,11 @@ int main(int argc, char **argv)
   size = count_spaces(result) + 1;
   arr = get_ints(result, size);
   a = new_stack(a, arr, size);
-  print_stack(*a);
-  sorted(*a);
-  // three_n(a);
-  // sort_a(a, b, list_length(*a));
-  // free(arr);
-  // free_stack(*a);
-  // free_stack(*b);
+  // print_stack(*a);
+  // sorted(*a);
+  three_n(a);
+  sort_a(a, b, list_length(*a));
+  free(arr);
+  free_stack(*a);
+  free_stack(*b);
 }

@@ -12,6 +12,19 @@
 
 #include "push_swap.h"
 
+t_stack *new_node(int data)
+{
+  t_stack *new;
+
+  if (!(new = malloc(sizeof(t_stack))))
+    error_exit(-1);
+  new->val = data;
+  new->chunk = 0;
+  new->next = NULL;
+  // printf("Value : %d\n", new->val);
+  return (new);
+}
+
 void print_stack(t_stack *a)
 {
   int size;
@@ -21,44 +34,16 @@ void print_stack(t_stack *a)
   while (size > 0)
   {
     // printf("d %5d c %5d\n", a->val, a->chunk);
-    printf("Value is %5d \n", a->val);
+    // printf("Value is %5d \n", a->val);
     a = a->next;
     size--;
   }
   printf("\n\n");
 }
-
-t_stack *new_node(int data)
-{
-  t_stack *new;
-
-  if (!(new = malloc(sizeof(t_stack))))
-    error_exit(-1);
-  new->val = data;
-  // new->chunk = 0;
-  new->next = NULL;
-  // printf("Value : %d\n", new->val);
-  return (new);
-}
-
-t_stack **new_stack(t_stack **ptr, int *arr, int size)
-{
-  while (size > 0)
-  {
-    push(ptr, arr[size - 1]);
-    size--;
-  }
-  (*ptr)->chunk = 3;
-  ft_lstlast(*ptr)->chunk = 1;
-  printf("ptr chunk is : %d\n", (*ptr)->chunk);
-  return (ptr);
-}
 t_stack *ft_lstlast(t_stack *lst)
 {
   while (lst && lst->next)
     lst = lst->next;
-
-  printf("Last index is: %d\n", lst->val);
   return (lst);
 }
 
@@ -96,6 +81,12 @@ int list_length(t_stack *lst)
   // printf("Length :%d\n", size);
   return (size);
 }
+t_stack *ft_lstprev(t_stack *lst)
+{
+  while (lst && lst->next && lst->next->next)
+    lst = lst->next;
+  return (lst);
+}
 int not_unique(int *arr, int size)
 {
   int i;
@@ -126,4 +117,16 @@ void free_stack(t_stack *a)
     a = tmp;
     free(tmp);
   }
+}
+t_stack **new_stack(t_stack **ptr, int *arr, int size)
+{
+  while (size > 0)
+  {
+    push(ptr, arr[size - 1]);
+    size--;
+  }
+  (*ptr)->chunk = 3;
+  ft_lstlast(*ptr)->chunk = 1;
+  // printf("ptr chunk is : %d\n", ft_lstlast(*ptr)->chunk);
+  return (ptr);
 }
