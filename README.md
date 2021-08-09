@@ -2,7 +2,7 @@
 The push_swap project is a very simple and highly effective algorithm project: data will need to be sorted. 
 You have at your disposal a set of int values, 2 stacks and a set of instructions to manipulate both stacks.
 
-Push_Swap instructions
+# Push_Swap instructions
 sa: swap a - swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements.
 sb: swap b - swap the first 2 elements at the top of stack b. Do nothing if there is only one or no elements.
 ss: sa and sb at the same time.
